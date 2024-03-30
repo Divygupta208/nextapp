@@ -1,6 +1,7 @@
 "use client";
+import MeetupDetails from "@/components/meetups/MeetupDetails";
+import { useRouter, useSearchParams } from "next/navigation";
 
-import MeetupList from "@/components/meetups/MeetupList";
 const DUMMY_MEETUP = [
   {
     id: "m1",
@@ -28,12 +29,16 @@ const DUMMY_MEETUP = [
   },
 ];
 
-const index = () => {
+const page = ({ params }) => {
+  const findMeetup = DUMMY_MEETUP.find(
+    (meetup) => meetup.id == params.meetupId
+  );
+
   return (
     <div>
-      <MeetupList meetups={DUMMY_MEETUP} />
+      <MeetupDetails meetup={findMeetup} />
     </div>
   );
 };
 
-export default index;
+export default page;
